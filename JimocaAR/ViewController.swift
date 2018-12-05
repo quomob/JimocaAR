@@ -88,13 +88,33 @@ extension ViewController: ARSCNViewDelegate {
             let plane = SCNPlane(width: CGFloat(imageSize.width), height: CGFloat(imageSize.height))
             //ここではまだ平面に何も貼り付けられていないはずなのにテクスチャーの倍率調整を行なっている
             plane.firstMaterial?.diffuse.contents = self.videoPlayer
+            
             self.videoPlayer.play()
-            //イメージ用Sceneノード生成
-            let imageHightingAnimationNode = SCNNode(geometry: plane)
-            //オイラー角で回転＿意味不明
-            imageHightingAnimationNode.eulerAngles.x = -.pi / 2
-            //イメージノードをシーンノードのチャイルドノードに追加
-            node.addChildNode(imageHightingAnimationNode)
+            //movie用Sceneノード生成
+            let movieNode = SCNNode(geometry: plane)
+            //オイラー角で回転
+            movieNode.eulerAngles.x = -.pi / 2
+            //movieノードをシーンノードに追加
+            node.addChildNode(movieNode)
+            
+            //action定義
+            let moviePlayAction = SCNAction.wait(duration: 15)
+            let movieFadeOut = SCNAction.fadeOut(duration: 1)
+            //動画を15秒再生した後、フェードアウトする
+            node.runAction(
+                SCNAction.sequence([
+                    moviePlayAction,
+                    movieFadeOut]
+                )
+            )
+            //movieノードをシーンノードから削除
+            node.removeFromParentNode()
+            
+            //partnerノード展開
+            
+            
+            
+            
             
         } else {
             print("Error: Failed to get ARImageAnchor")
