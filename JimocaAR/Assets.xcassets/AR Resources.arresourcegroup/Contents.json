@@ -1,0 +1,26 @@
+{
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  },
+  "resources" : [
+    {
+      "filename" : "jimoca_001.arreferenceimage"
+    },
+    {
+      "filename" : "jimoca_gold_001.arreferenceimage"
+    },
+    {
+      "filename" : "jimoca_gold_002.arreferenceimage"
+    },
+    {
+      "filename" : "jimoca_gold_003.arreferenceimage"
+    },
+    {
+      "filename" : "jimoca_vfk_001.arreferenceimage"
+    },
+    {
+      "filename" : "jimoca_vfk_002.arreferenceimage"
+    }
+  ]
+}
