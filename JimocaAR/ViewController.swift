@@ -85,6 +85,7 @@ extension ViewController: ARSCNViewDelegate {
             //イメージサイズをリファレンスイメージのフィジカルサイズから取得
             let imageSize = imageAnchor.referenceImage.physicalSize
             //SceneKitで平面を生成。サイズを取得したイメージのプロパティのサイズを設定
+            /*
             let plane = SCNPlane(width: CGFloat(imageSize.width), height: CGFloat(imageSize.height))
             //ここではまだ平面に何も貼り付けられていないはずなのにテクスチャーの倍率調整を行なっている
             plane.firstMaterial?.diffuse.contents = self.videoPlayer
@@ -108,12 +109,54 @@ extension ViewController: ARSCNViewDelegate {
                 )
             )
             //movieノードをシーンノードから削除
-            node.removeFromParentNode()
+            //node.removeFromParentNode()
+ */
             
             //partnerノード展開
+            let partnerLabelScene = SCNScene(named: "art.scnassets/partnerLabel.scn")!
             
+            let partnerLabel1 = partnerLabelScene.rootNode.childNode(withName: "partner_borudo",recursively: true)
+            partnerLabel1?.name = "partner_borudo"
+            let partnerLabel2 = partnerLabelScene.rootNode.childNode(withName: "partner_bokuri",recursively: true)
+            partnerLabel2?.name = "partner_bokuri"
+            let partnerLabel3 = partnerLabelScene.rootNode.childNode(withName: "partner_akariya",recursively: true)
+            partnerLabel2?.name = "partner_akariya"
+            let partnerLabel4 = partnerLabelScene.rootNode.childNode(withName: "partner_14tsuki",recursively: true)
+            partnerLabel2?.name = "partner_14tsuki"
+            let partnerLabel5 = partnerLabelScene.rootNode.childNode(withName: "partner_seisenryo",recursively: true)
+            partnerLabel2?.name = "partner_seisenryo"
+            let partnerLabel6 = partnerLabelScene.rootNode.childNode(withName: "partner_shimobe",recursively: true)
+            partnerLabel2?.name = "partner_shimobe"
             
+            partnerLabel1!.geometry?.firstMaterial?.isDoubleSided = true
+            partnerLabel2!.geometry?.firstMaterial?.isDoubleSided = true
+            partnerLabel3!.geometry?.firstMaterial?.isDoubleSided = true
+            partnerLabel4!.geometry?.firstMaterial?.isDoubleSided = true
+            partnerLabel5!.geometry?.firstMaterial?.isDoubleSided = true
+            partnerLabel6!.geometry?.firstMaterial?.isDoubleSided = true
+            partnerLabel1!.eulerAngles.x = -.pi / 2
+            partnerLabel2!.eulerAngles.x = -.pi / 2
+            partnerLabel3!.eulerAngles.x = -.pi / 2
+            partnerLabel4!.eulerAngles.x = -.pi / 2
+            partnerLabel5!.eulerAngles.x = -.pi / 2
+            partnerLabel6!.eulerAngles.x = -.pi / 2
+            partnerLabel1!.position = SCNVector3(-0.03, 0, -0.03)
+            partnerLabel2!.position = SCNVector3(0.03, 0, -0.03)
+            partnerLabel3!.position = SCNVector3(-0.03, 0, 0)
+            partnerLabel4!.position = SCNVector3(0.03, 0, 0)
+            partnerLabel5!.position = SCNVector3(-0.03, 0, 0.03)
+            partnerLabel6!.position = SCNVector3(0.03, 0, 0.03)
+
             
+            node.addChildNode(partnerLabel1!)
+            node.addChildNode(partnerLabel2!)
+            node.addChildNode(partnerLabel3!)
+            node.addChildNode(partnerLabel4!)
+            node.addChildNode(partnerLabel5!)
+            node.addChildNode(partnerLabel6!)
+            
+            let labelFadeIn = SCNAction.fadeIn(duration: 2)
+            node.runAction(labelFadeIn)
             
             
         } else {
